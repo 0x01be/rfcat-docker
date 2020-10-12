@@ -23,3 +23,9 @@ RUN pip3 install --prefix /opt/rfcat/ \
     ipython \
     pyserial
 
+RUN ln -s /opt/sdcc/bin/sdcc /usr/bin/FUCKNO_use_SDCC_3.5.0_instead
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+WORKDIR /opt/rfcat/bin/firmware
+RUN make
+
