@@ -9,6 +9,6 @@ RUN apk add --no-cache --virtual rfcat-runtime-dependencies \
     python3 \
     py3-numpy
 
-ENV PATH ${PATH}:/opt/sdcc/bin/
+ENV PATH ${PATH}:/opt/sdcc/bin/:/opt/rfcat/bin/
 ENV PYTHONPATH /usr/lib/python3.8/site-packages/:/opt/rfcat/lib/python3.8/site-packages/
 
