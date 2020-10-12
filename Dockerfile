@@ -5,6 +5,7 @@ FROM alpine
 COPY --from=build /opt/ /opt/
 
 RUN apk add --no-cache --virtual rfcat-runtime-dependencies \
+    libstdc++ \
     python3 \
     py3-numpy
 
