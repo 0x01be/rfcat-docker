@@ -1,4 +1,4 @@
-FROM 0x01be/rfcat as build
+FROM 0x01be/rfcat:build as build
 
 FROM alpine
 
