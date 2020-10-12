@@ -1,25 +1,13 @@
-FROM 0x01be/sdcc as sdcc
+FROM 0x01be/rfcat as build
 
 FROM alpine
 
-COPY --from=sdcc /opt/sdcc/ /opt/sdcc/
+COPY --from=build /opt/ /opt/
 
-ENV PATH  ${PATH}:/opt/sdcc/bin/
-
-RUN apk add --no-cache --virtual rfcat-build-dependencies \
-    git \
-    build-base \
-    python3-dev \
-    py3-pip \
+RUN apk add --no-cache --virtual rfcat-runtime-dependencies \
+    python3 \
     py3-numpy
 
-ENV RFCAT_REVISION master
-RUN git clone --depth 1 --branch ${RFCAT_REVISION} https://github.com/atlas0fd00m/rfcat.git /opt/rfcat/bin/
-
-WORKDIR /opt/rfcat/bin
-RUN pip3 install --prefix /opt/rfcat/ \
-    pyusb \
-    future \
-    ipython \
-    pyserial
+ENV PATH ${PATH}:/opt/sdcc/bin/
+ENV PYTHONPATH /usr/lib/python3.8/site-packages/:/opt/rfcat/lib/python3.8/site-packages/
 
