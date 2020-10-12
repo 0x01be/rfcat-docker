@@ -30,5 +30,6 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV PATH ${PATH}:/opt/sdcc/bin/
 WORKDIR /opt/rfcat/bin/firmware
+RUN sed -i.bak 's/`..\/revision.sh`/1/g' Makefile
 RUN make
 
